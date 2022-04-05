@@ -11,14 +11,24 @@ const template = `
   <h1>Food Tracker</h1>
 `;
 
+const backLinkAttr = "back-link";
+
 class FtNav extends HTMLElement {
   constructor() {
     super();
     this.#render();
   }
 
+  static get observedAttributes() {
+    return [backLinkAttr];
+  }
+
+  attributeChangedCallback() {
+    this.#render();
+  }
+
   #render() {
-    const backUrl = this.getAttribute("back-link");
+    const backUrl = this.getAttribute(backLinkAttr);
 
     replaceContentsWithTemplate(this, templateId);
     const backLink = findElement(HTMLAnchorElement, this, ":scope > a._back");
