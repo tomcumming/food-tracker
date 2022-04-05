@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "check": "tsc -p jsconfig.json",
+    "format": "prettier --write index.html script style page",
+    "serve": "python3 -m http.server"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.3"
+  }
+}

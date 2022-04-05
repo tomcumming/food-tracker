@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "noEmit": true,
+    "checkJs": true
+  },
+  "include": [
+    "script/**/*",
+    "page/**/*"
+  ]
+}
