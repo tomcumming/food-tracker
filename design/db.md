@@ -17,8 +17,19 @@
     - `carbs` number (not null)
     - `alcohol` number (not null)
     - `finalised` bool (not null)
-  - Exposed functions:
-    - `getDaySummaries(upto?: Date)`
-      - Should return 1 page of rows with the newest entry being the `upto`
-        field, else return the latest entries.
-    - `setDay(data: ...)`
+- `food-type`
+  - fields
+    - `id`: primary key `FoodId`
+    - `name`: string (not null)
+- `portion`
+  - fields
+    - `id`: primary key
+    - `food`: `FoodId` (not null)
+    - `desc`: string (not null)
+    - `size`: number (not null) 
+- `eaten`
+  - primary-key: `date` and `food`
+  - fields:
+    - `date` primary key, should be short date string aka `2026-01-01`.
+    - `food`: `FoodId` (not null)
+    - `amount`: number (not null)
