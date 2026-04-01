@@ -1,0 +1,3 @@
+- Use the nix develop environment.
+- DO NOT add node packages.
+- Specs can be found in `./design`

@@ -1,0 +1,14 @@
+{
+  "name": "food-tracker",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "esbuild src/index.ts --bundle --outfile=dist/index.js --servedir=dist --serve",
+    "format": "prettier --write src dist/*.html",
+    "check": "tsc"
+  },
+  "devDependencies": {
+    "prettier": "3",
+    "typescript": "6"
+  }
+}
