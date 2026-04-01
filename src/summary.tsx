@@ -36,12 +36,15 @@ export function SummaryTable() {
             <th class="text-right p-2">Cals</th>
             <th class="text-right p-2">Carbs</th>
             <th class="text-right p-2">Alcohol</th>
+            <th class="text-center p-2"></th>
           </tr>
         </thead>
         <tbody>
           {dates.map((date) => {
             const summary = summaryMap.get(date);
             const isEditable = !summary || !summary.finalised;
+
+            const status = summary ? (summary.finalised ? "✅" : "✏️") : "";
 
             return (
               <tr key={date} class="border-b border-gray-200">
@@ -63,6 +66,7 @@ export function SummaryTable() {
                 <td class="text-right p-2">
                   {summary ? summary.alcohol : "-"}
                 </td>
+                <td class="text-center p-2">{status}</td>
               </tr>
             );
           })}
