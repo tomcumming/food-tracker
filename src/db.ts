@@ -8,6 +8,7 @@ export interface DaySummary {
   calories: number;
   carbs: number;
   alcohol: number;
+  finalised: boolean;
 }
 
 export interface Schema {

@@ -16,6 +16,7 @@
     - `colories` number (not null)
     - `carbs` number (not null)
     - `alcohol` number (not null)
+    - `finalised` bool (not null)
   - Exposed functions:
     - `getDaySummaries(upto?: Date)`
       - Should return 1 page of rows with the newest entry being the `upto`
