@@ -1,9 +1,9 @@
 const DB_NAME = "food-tracker";
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 const PAGE_SIZE = 30;
 
-export type FoodId = string & { readonly __brand: "FoodId" };
+export type FoodId = number & { readonly __brand: "FoodId" };
 export type PortionId = string & { readonly __brand: "PortionId" };
 
 export interface DaySummary {
@@ -54,7 +54,10 @@ function openDb(): Promise<IDBDatabase> {
         db.createObjectStore("day-summary", { keyPath: "date" });
       }
       if (!db.objectStoreNames.contains("food-type")) {
-        db.createObjectStore("food-type", { keyPath: "id" });
+        db.createObjectStore("food-type", {
+          keyPath: "id",
+          autoIncrement: true,
+        });
       }
       if (!db.objectStoreNames.contains("portion")) {
         db.createObjectStore("portion", { keyPath: "id" });
@@ -147,5 +150,34 @@ export async function setEaten(
     const request = store.put({ date, food, amount });
     request.onerror = () => reject(request.error);
     request.onsuccess = () => resolve();
+  });
+}
+
+export async function getFoodType(id: FoodId): Promise<FoodType> {
+  const db = await openDb();
+  const store = getStore(db, "food-type", "readonly");
+
+  return new Promise((resolve, reject) => {
+    const request = store.get(id);
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      if (!request.result) {
+        reject(new Error(`Food type ${id} not found`));
+      } else {
+        resolve(request.result);
+      }
+    };
+  });
+}
+
+export async function saveFoodType(
+  data: Omit<FoodType, "id"> & { id?: FoodId },
+): Promise<FoodId> {
+  const db = await openDb();
+  const store = getStore(db, "food-type", "readwrite");
+  return new Promise((resolve, reject) => {
+    const request = store.put(data);
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve(request.result as FoodId);
   });
 }
