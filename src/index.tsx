@@ -6,7 +6,7 @@ import { DayEditor } from "./dayview";
 function App() {
   const route = useRoute();
 
-  if (route.page === "day" && route.date) {
+  if (route.page === "day") {
     return <DayEditor date={route.date} />;
   }
   return <SummaryTable />;

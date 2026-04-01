@@ -135,7 +135,11 @@ export async function getEatenForDay(date: string): Promise<Eaten[]> {
   });
 }
 
-export async function setEaten(date: string, food: FoodId, amount: number): Promise<void> {
+export async function setEaten(
+  date: string,
+  food: FoodId,
+  amount: number,
+): Promise<void> {
   const db = await openDb();
   const store = getStore(db, "eaten", "readwrite");
 

@@ -1,3 +1,4 @@
-- Use the nix develop environment.
+- Use the nix develop environment: `nix develop --command ...`
+- Typecheck with `npm run check`
 - DO NOT add node packages.
 - Specs can be found in `./design`
