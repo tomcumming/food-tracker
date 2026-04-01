@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "format": "prettier --write src dist/*.html scripts package.json",
+    "format": "prettier --write src dist/*.html scripts package.json tsconfig.json",
     "check": "tsc",
     "precommit": "npm run format && npm run check"
   },
